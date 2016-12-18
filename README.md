@@ -1,4 +1,4 @@
-# antd-starter
+# RSS inventory project repo
 React, Redux and React Router and antd in ES6 for ultra-responsive web apps
 
 ## 技术点

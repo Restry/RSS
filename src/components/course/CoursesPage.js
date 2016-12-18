@@ -51,5 +51,5 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(courseActions, dispatch)
   };
 }
-
+CoursesPage.title='Page Title from courses';
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);

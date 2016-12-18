@@ -31,6 +31,12 @@ module.exports =  {
       }
     }
   },
+
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+    'antd':true
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),

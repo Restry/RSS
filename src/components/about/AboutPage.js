@@ -116,7 +116,7 @@ class EditableTable extends React.Component {
     const { count, dataSource } = this.state;
     const newData = {
       key: count,
-      name: `Edward King ${count}`,
+      name: `Restry King ${count}`,
       age: 32,
       address: `London, Park Lane no. ${count}`,
     };
@@ -134,4 +134,5 @@ class EditableTable extends React.Component {
     </div>);
   }
 }
+EditableTable.title='供应商主数据';
 export default EditableTable;
