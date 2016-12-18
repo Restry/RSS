@@ -1,0 +1,5 @@
+{
+    "/api/": "/",
+    "/sopsapi/api/": "/",
+    "/Workflow/": "/"
+}

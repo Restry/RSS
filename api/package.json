@@ -1,0 +1,12 @@
+{
+  "name": "mocksops",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+      "dev":"json-server db.js --routes routes.json --port 9999",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

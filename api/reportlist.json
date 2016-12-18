@@ -1,0 +1,93 @@
+[
+  {
+    "Id": 19,
+    "title": "问题接收组的用户数据",
+    "url": "QuestionReceiverData",
+    "tooltip": "问题接收组的用户数据",
+    "active": true,
+    "order": 1,
+    "parentId": 6,
+    "old": null,
+    "IsReport": true,
+    "groupid": null,
+    "Id1": 0
+  },
+  {
+    "Id": 20,
+    "title": "经验建议接收组的用户数据",
+    "url": "ExperienceResponseData",
+    "tooltip": "经验建议接收组的用户数据",
+    "active": true,
+    "order": 2,
+    "parentId": 6,
+    "old": null,
+    "IsReport": true,
+    "groupid": null,
+    "Id1": 0
+  },
+  {
+    "Id": 21,
+    "title": "机构汇总数据",
+    "url": "BranchBusinessData",
+    "tooltip": "机构汇总数据",
+    "active": true,
+    "order": 3,
+    "parentId": 6,
+    "old": null,
+    "IsReport": true,
+    "groupid": null,
+    "Id1": 0
+  },
+  {
+    "Id": 22,
+    "title": "柜员累计数据",
+    "url": "TellerBusinessData",
+    "tooltip": "柜员累计数据",
+    "active": true,
+    "order": 4,
+    "parentId": 6,
+    "old": null,
+    "IsReport": true,
+    "groupid": null,
+    "Id1": 0
+  },
+  {
+    "Id": 23,
+    "title": "点击量超过一定次数的智慧单元",
+    "url": "KnowlegeVisitTop",
+    "tooltip": "点击量超过一定次数的智慧单元",
+    "active": true,
+    "order": 5,
+    "parentId": 6,
+    "old": null,
+    "IsReport": true,
+    "groupid": null,
+    "Id1": 0
+  },
+  {
+    "Id": 24,
+    "title": "点击量超过一定次数的标准操作流程",
+    "url": "NonKnowlegeVisitTop",
+    "tooltip": "点击量超过一定次数的标准操作流程",
+    "active": true,
+    "order": 6,
+    "parentId": 6,
+    "old": null,
+    "IsReport": true,
+    "groupid": null,
+    "Id1": 0
+  },
+  {
+    "Id": 25,
+    "title": "分行访问量统计",
+    "url": "BranchVisitCount",
+    "tooltip": "分行访问量统计",
+    "active": true,
+    "order": 7,
+    "parentId": 6,
+    "old": null,
+    "IsReport": true,
+    "groupid": null,
+    "Id1": 0
+  }
+]
