@@ -7,9 +7,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports =  {
   debug: true,
   devtool: 'source-map',
-  noInfo: false,
+  context: path.resolve(__dirname, 'src'),
+  noInfo: true,
   entry: {
-    app: './src/index'
+    app: 'index'
   },
   target: 'web',
   output: {
@@ -19,7 +20,7 @@ module.exports =  {
     chunkFilename: 'js/[chunkhash:8].[name].js'
   },
   devServer: {
-    contentBase: './src',
+    // contentBase: './src',
     port:3001,
     host:'0.0.0.0',
     historyApiFallback:true,
@@ -32,6 +33,13 @@ module.exports =  {
     }
   },
 
+  resolve: {
+    modulesDirectories: [
+      'src',
+      'node_modules'
+    ],
+    extensions: ['', '.json', '.js', '.jsx', 'index.js']
+  },
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',
@@ -44,7 +52,7 @@ module.exports =  {
     new HtmlwebpackPlugin({
       title: 'RSS.APP',
       filename: 'index.html', //生成的html存放路径，相对于 path
-      template: './assets/_layouts.ejs', //html模板路径
+      template: '../assets/_layouts.ejs', //html模板路径
       inject: true, //允许插件修改哪些内容，inject: true, 包括head与body   inject: head, 只到head
       hash: true, //为静态资源生成hash值
       chunks: ['app', 'common'],

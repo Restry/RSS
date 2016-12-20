@@ -8,6 +8,7 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import { loadCourses } from './actions/courseActions';
 import { loadAuthors } from './actions/authorActions';
+import { load } from './reducers/info';
 import './styles/styles.css'; //Webpack can import CSS files too!
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
@@ -16,6 +17,7 @@ import DevTools from './helpers/DevTools';
 const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
+store.dispatch(load());
 
 // if (__DEVELOPMENT__) {
 //   render(

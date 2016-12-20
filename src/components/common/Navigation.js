@@ -8,7 +8,7 @@ import { Link, IndexLink } from 'react-router';
 const Sider = React.createClass({
   getInitialState() {
     return {
-      current: '1',
+      current: 'mail',
     };
   },
   handleClick(e) {
@@ -18,6 +18,7 @@ const Sider = React.createClass({
     });
   },
   render() {
+    const {navigator} = this.props;
     return (
       <Menu onClick={this.handleClick}
         style={{ width: 'auto' }}
@@ -25,29 +26,23 @@ const Sider = React.createClass({
         selectedKeys={[this.state.current]}
         mode="inline"
         >
-        <Menu.Item key="0">
-          <Link to="/"><Icon type="home" />主页</Link>
-        </Menu.Item>
-
-        <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Master Data</span></span>}>
-          <Menu.Item key="5"><Link to="courses">客户主数据</Link></Menu.Item>
-          <Menu.Item key="6"><Link to="about">供应商主数据</Link></Menu.Item>
-
-        </SubMenu>
-        <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigation Two</span></span>}>
-          <Menu.Item key="5">Option 5</Menu.Item>
-          <Menu.Item key="6">Option 6</Menu.Item>
-          <SubMenu key="sub3" title="Submenu">
-            <Menu.Item key="7">Option 7</Menu.Item>
-            <Menu.Item key="8">Option 8</Menu.Item>
-          </SubMenu>
-        </SubMenu>
-        <SubMenu key="sub4" title={<span><Icon type="setting" /><span>Navigation Three</span></span>}>
-          <Menu.Item key="9">Option 9</Menu.Item>
-          <Menu.Item key="10">Option 10</Menu.Item>
-          <Menu.Item key="11">Option 11</Menu.Item>
-          <Menu.Item key="12">Option 12</Menu.Item>
-        </SubMenu>
+        {navigator && navigator.map((item, index) => {
+          if (!item.childs) {
+            return (
+              <Menu.Item key={item.class}>
+                <Link to={item.url}><Icon type={item.class} />{item.title}</Link>
+              </Menu.Item>
+            );
+          } else {
+            return (
+              <SubMenu key={item.class} title={<span><Icon type={item.class} /><span>{item.title}</span></span>}>
+                {item.childs.map((childItem,childIndex)=>{
+                  return (<Menu.Item key={childItem.class}><Link to={childItem.url}>{childItem.title}</Link></Menu.Item>);
+                })}
+              </SubMenu>
+            );
+          }
+        })}
       </Menu>
     );
   },

@@ -1,7 +1,6 @@
 // This component handles the App template used on every page.
 import React, {PropTypes} from 'react';
-import Header from './common/Header';
-import Navigator from './common/Navigation';
+import {Header,Navigator} from 'components';
 import {connect} from 'react-redux';
 
 class App extends React.Component {
@@ -9,7 +8,7 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
       <div className="col-xs-2">
-      <Navigator />
+      <Navigator navigator={this.props.navigator}/>
       </div>
         <div className="col-xs-10">
         <Header
@@ -24,12 +23,14 @@ class App extends React.Component {
 
 App.propTypes = {
   children: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  navigator:PropTypes.array
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    loading: state.ajaxCallsInProgress > 0
+    loading: state.ajaxCallsInProgress > 0,
+    navigator:state.info.navigator
   };
 }
 
