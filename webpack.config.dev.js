@@ -43,7 +43,7 @@ module.exports =  {
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',
-    'antd':true
+    'moment':true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

@@ -27,27 +27,27 @@ server.get('/sopsapi/api/Branch/Child', function (req, res, next) {
 })
 
 
-server.use(function (req, res, next) {
-  if (req.method === 'POST') {
-   setTimeout(function() {
+// server.use(function (req, res, next) {
+//   if (req.method === 'POST') {
+//    setTimeout(function() {
 
-    var url = req.url.split('?')[0];
-    var queryUrls = url.split('/');
-    var lastQueryIde = queryUrls[queryUrls.length - 1];
+//     var url = req.url.split('?')[0];
+//     var queryUrls = url.split('/');
+//     var lastQueryIde = queryUrls[queryUrls.length - 1];
 
-    res.send(db[lastQueryIde])
-    res.flush();
-    res.end();
+//     res.send(db[lastQueryIde])
+//     res.flush();
+//     res.end();
 
-   }, 800);
+//    }, 800);
 
-    return;
-  }
+//     return;
+//   }
 
-  req.query = {}
-  // Continue to JSON Server router
-  next()
-})
+//   req.query = {}
+//   // Continue to JSON Server router
+//   next()
+// })
 
 server.use(jsonServer.rewriter({
   '/api/': '/',

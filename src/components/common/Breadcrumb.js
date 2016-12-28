@@ -3,10 +3,18 @@ import React, { Component } from 'react';
 import { Breadcrumb, Icon } from 'antd';
 import { withRouter, Link } from 'react-router';
 
-const Bread = ({ routes }) => {
+
+function itemRender(route, params, routes, paths) {
+  const last = routes.indexOf(route) === routes.length - 1;
+  return last ? <span>{route.breadcrumbName}</span> : <Link to={route.path}>{route.breadcrumbName}</Link>;
+}
+
+const Bread = ({ routes ,params}) => {
   return (
-    <Breadcrumb>
-      <Breadcrumb.Item href="/">
+    <Breadcrumb routes={routes} params={params} />
+  );
+};
+/*      <Breadcrumb.Item href="/">
         <Icon type="home" />
       </Breadcrumb.Item>
 
@@ -22,10 +30,6 @@ const Bread = ({ routes }) => {
       )}
 
 
-    </Breadcrumb>
-
-  );
-};
-
+    </Breadcrumb> */
 
 export default withRouter(Bread);

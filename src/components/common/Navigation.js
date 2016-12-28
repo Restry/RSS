@@ -8,11 +8,11 @@ import { Link, IndexLink } from 'react-router';
 const Sider = React.createClass({
   getInitialState() {
     return {
-      current: 'mail',
+      current: 'mail'
     };
   },
   handleClick(e) {
-    console.log('click ', e);
+    // console.log('click ', e);
     this.setState({
       current: e.key,
     });
@@ -22,7 +22,7 @@ const Sider = React.createClass({
     return (
       <Menu onClick={this.handleClick}
         style={{ width: 'auto' }}
-        defaultOpenKeys={['sub1']}
+        defaultOpenKeys={['mail','appstore']}
         selectedKeys={[this.state.current]}
         mode="inline"
         >

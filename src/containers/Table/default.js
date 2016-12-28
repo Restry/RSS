@@ -1,44 +1,72 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Table } from 'antd';
-import * as tableConfig from 'helpers/tablesConfig';
+import * as pageConfigs from 'pageConfigs';
 import { connect } from 'react-redux';
 import * as tableActions from 'reducers/table';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 
 class AjaxTable extends Component {
   constructor(props, context) {
     super(props, context);
+
+    const { pagination } = props;
     this.state = {
-      pagination: this.props.pagination
+      pagination: pagination,
+      config: () => { }
     };
-    this.currentPageData = tableConfig[this.props.params.id]();
-    this.columns = this.currentPageData.columns;
+    console.log('default conc init');
   }
   componentDidMount() {
-    this.props.actions.load(this.currentPageData.api);
+    let { pagination, params, config, actions } = this.props;
+    const pageConfig = config(this);
+    this.setState({ config: pageConfig });
+
+    actions.load(pageConfig.api);
+    console.log(`default componentDidMount:${pageConfig.api}`);
   }
+  componentWillReceiveProps(nextProps) {
+    const {params, actions} = this.props;
+    const {created, edited, deleted, params: nextParams, config: nextConfig} = nextProps;
+
+    if (params.id !== nextParams.id) {
+      console.log(`default componentWillReceiveProps:before-${params.id};after-${nextParams.id}`,nextConfig);
+
+      const config = nextConfig(this);
+      this.setState({ config });
+      actions.load(config.api);
+    }
+  }
+
   handleTableChange = (pagination, filters, sorter) => {
     const pager = this.state.pagination;
+    const { actions } = this.props;
+
     pager.current = pagination.current;
     this.setState({
       pagination: pager,
     });
-    this.props.actions.pagination(this.currentPageData.api, pagination, filters, sorter);
-    // this.fetch({
-    //   results: pagination.pageSize,
-    //   page: pagination.current,
-    //   sortField: sorter.field,
-    //   sortOrder: sorter.order,
-    //   ...filters
-    // });
+    actions.pagination(this.state.config.api, pagination, filters, sorter);
   }
-
+  onDelete = (obj) => {
+    return () => {
+      const {actions, params} = this.props;
+      actions.remove(params.id, obj.id).then(() => {
+        actions.load(this.state.config.api);
+      });
+      // alert(obj.code);
+    }
+  }
   render() {
-    const { loading, data, pagination} = this.props;
+    const { loading, data} = this.props;
+    const { config, pagination} = this.state;
     return (
-      <Table columns={this.columns}
+      <Table columns={config.columns}
         rowKey={record => record.code}
         dataSource={data}
+        footer={() => {
+          return <Link to={config.newFormUrl}>添加</Link>
+        } }
         pagination={this.state.pagination}
         loading={loading}
         onChange={this.handleTableChange}
@@ -47,11 +75,15 @@ class AjaxTable extends Component {
   }
 }
 
+AjaxTable.propTypes = {
+  config: PropTypes.func.isRequired
+}
+
 export default connect((state, ownProps) => {
+  console.log(`default connect : ${ownProps.params.id}`);
   return {
-    loading: state.ajaxCallsInProgress > 0,
-    data: state.table.data,
-    pagination: state.table.pagination
+    ...state.table,
+    config: pageConfigs[ownProps.params.id]()
   };
 }, (dispatch) => {
   return {

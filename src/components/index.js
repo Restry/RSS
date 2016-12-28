@@ -1,4 +1,4 @@
 export Header from './common/Header';
 export Navigator from './common/Navigation';
 export Bread from './common/Breadcrumb';
-export TextCell from './table/TextCell';
+export EditableCell from './table/EditableCell';

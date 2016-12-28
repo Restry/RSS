@@ -5,7 +5,6 @@
   min-height: 850px;
   margin: 0 auto;
 }
-.sops { padding-top:1rem;}
 a.active {
   color: orange;
 }
@@ -66,4 +65,10 @@ nav {
   line-height: 30px;
   padding: 0 10px;
 }
-.branding { margin-bottom: 0.5rem;}
+.branding { margin: 1em 0;}
+
+.rss-itemDetails-form .form-title {
+    margin: 1em auto;
+    text-align: center;
+}
+.rss-input-table input { border:0;}

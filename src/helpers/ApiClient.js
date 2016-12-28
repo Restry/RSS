@@ -1,4 +1,5 @@
 import superagent from 'superagent';
+import { Random, mock } from 'mockjs';
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 function formatUrl(path) {
@@ -24,8 +25,9 @@ export default class ApiClient {
         if (data) {
           request.send(data);
         }
-
-        request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+        setTimeout(() => {
+          request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+        }, Random.integer(50,300));
       }));
   }
   /*
@@ -38,5 +40,5 @@ export default class ApiClient {
    *
    * Remove it at your own risk.
    */
-  empty() {}
+  empty() { }
 }
