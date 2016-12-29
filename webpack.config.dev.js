@@ -43,7 +43,10 @@ module.exports =  {
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',
-    'moment':true
+    'moment':true,
+    'mockjs': 'Mock',
+    'jQuery': '$',
+    'jquery': '$'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

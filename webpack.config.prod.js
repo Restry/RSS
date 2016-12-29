@@ -2,6 +2,7 @@ var path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var Visualizer = require('webpack-visualizer-plugin');
 
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production')
@@ -13,7 +14,8 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   noInfo: true,
   entry: {
-    app: 'index'
+    app: 'index',
+    common: ['antd', 'react-router']
   },
   target: 'web',
   output: {
@@ -32,9 +34,13 @@ module.exports = {
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',
-    'moment': true
+    'moment': true,
+    'mockjs': 'Mock',
+    'jQuery': '$',
+    'jquery': '$'
   },
   plugins: [
+    new Visualizer(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
