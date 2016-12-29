@@ -1,30 +1,30 @@
-var jsonServer = require('json-server')
-var server = jsonServer.create()
+var jsonServer = require('json-server');
+var server = jsonServer.create();
 
 var db = require('./db.js');
 
 var router = jsonServer.router(db);
-var middlewares = jsonServer.defaults()
+var middlewares = jsonServer.defaults();
 
 // Set default middlewares (logger, static, cors and no-cache)
-server.use(middlewares)
+server.use(middlewares);
 
 // Add custom routes before JSON Server router
 server.get('/sopsapi/api/User/PageList', function (req, res, next) {
-  res.jsonp(db.reportlist)
+  res.jsonp(db.reportlist);
   /*
     res.send(db.reportlist);
     res.flush();
     res.end();
   */
-})
+});
 // Add custom routes before JSON Server router
 server.get('/sopsapi/api/GlobalConfig', function (req, res, next) {
-  res.jsonp(db.configs)
-})
+  res.jsonp(db.configs);
+});
 server.get('/sopsapi/api/Branch/Child', function (req, res, next) {
-  res.jsonp(db.Branch)
-})
+  res.jsonp(db.Branch);
+});
 
 
 // server.use(function (req, res, next) {
@@ -54,10 +54,10 @@ server.use(jsonServer.rewriter({
   '/sopsapi/api/': '/',
   '/Workflow/': '/',
   '/WFItem/': '/'
-}))
+}));
 
 // Use default router
-server.use(router)
+server.use(router);
 server.listen(3002, function () {
-  console.log('JSON Server is running:3002')
-})
+  console.log('JSON Server is running:3002');
+});
